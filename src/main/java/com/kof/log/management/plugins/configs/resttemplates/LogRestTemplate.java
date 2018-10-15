@@ -19,8 +19,7 @@ public class LogRestTemplate  {
 
     @Autowired
     RestTemplate restTemplate;
-//    public void exchange(LogInfo logInfo, String s, String get, Object o, Class<String> stringClass) {
-//    }
+
     public <T> ResponseEntity<T> exchange(LogInfo logInfo,String url, HttpMethod method, HttpEntity<?> requestEntity, ParameterizedTypeReference<T> responseType, Object... uriVariables) throws RestClientException {
         HttpEntity<?> logRequestEntity = getLogHttpEntity(logInfo, requestEntity);
         return restTemplate.exchange(url, method, logRequestEntity, responseType, uriVariables);

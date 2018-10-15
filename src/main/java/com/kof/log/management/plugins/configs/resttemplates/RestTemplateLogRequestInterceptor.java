@@ -1,9 +1,6 @@
 package com.kof.log.management.plugins.configs.resttemplates;
 
-
-
 import com.alibaba.fastjson.JSON;
-import org.apache.commons.io.output.StringBuilderWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.*;
@@ -12,8 +9,6 @@ import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.Writer;
 import java.net.URI;
 import java.util.Date;
 import java.util.List;

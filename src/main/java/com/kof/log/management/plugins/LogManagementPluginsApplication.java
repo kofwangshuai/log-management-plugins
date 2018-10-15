@@ -1,6 +1,7 @@
 package com.kof.log.management.plugins;
 
 import com.alibaba.fastjson.JSON;
+import com.kof.log.management.plugins.configs.feign.TestFeign;
 import com.kof.log.management.plugins.configs.resttemplates.LogRestTemplate;
 import com.kof.log.management.plugins.configs.resttemplates.RestTemplateLogRequestInterceptor;
 import com.kof.log.management.plugins.entity.LogInfo;
@@ -9,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +26,7 @@ import java.util.HashMap;
 
 @SpringBootApplication
 @RestController
+@EnableFeignClients
 public class LogManagementPluginsApplication {
 
     public static void main(String[] args) {
@@ -37,6 +40,9 @@ public class LogManagementPluginsApplication {
 
     @Autowired
     LogRestTemplate logRestTemplate;
+
+    @Autowired
+    TestFeign testFeign;
 
     @RequestMapping("/restTempalte/get/logs")
     public String restTemplateGetLogs(){
@@ -52,6 +58,8 @@ public class LogManagementPluginsApplication {
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
+
+        String logTest = testFeign.getLogTest();
 
         return forEntity.getBody();
     }
